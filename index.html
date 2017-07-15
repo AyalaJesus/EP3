@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="peliculas">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+  <script src="./js/angular/angular.min.js" charset="utf-8"> </script>
+  <script src="./js/angular/angular-resource.min.js" charset="utf-8"> </script>
+  <script src="./js/angular/FirstController.js" charset="utf-8"> </script>
+
+</head>
+<body ng-controller="FirstController">
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Hanoway</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Opciones</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Más opciones</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="header center orange-text"><b>Hanoway Movies</b></h1>
+      <div class="row center">
+        <h5 id="mess1" class="header col s12 light" style="display: initial;" ><b>¿Qué esperas para suscribite?</b></h5>
+        <h5 id="mess2" class="header col s12 light" style="display: initial;" ><b>Cambiate y recibe guamazos de información</b></h5>
+      </div>
+    </div>
+  </div>
+
+
+  
+<div class="container">
+  <div  id="ver" style="display: none;">
+  <ul class="collapsible popout" data-collapsible="accordion">
+        <li ng-repeat="arreglo in movies">
+          <div class="collapsible-header" style="padding:10px"><b style="color:#0091ea"><center>{{arreglo.title}}</center></b></div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="col s12" style="background:url('https://image.tmdb.org/t/p/w500/{{arreglo.poster_path}}');
+                 background-attachment: fixed; background-repeat: no-repeat; background-position: 80% 0%;">
+                  <div class="col s6 m6">
+                    <img class="images" style="float:middle;" ng-src="https://image.tmdb.org/t/p/w500/{{arreglo.backdrop_path}}">
+                    <legend>{{arreglo.title}}</legend>
+                    <legend>Valoración: {{arreglo.vote_average}}</legend>
+                    <p>
+                    {{arreglo.overview}}
+                    </p>
+                  </div>
+                  <div class="col s6 m6">
+                      <b><h3>Estreno</h3></b>
+                      <legend>{{arreglo.release_date}}</legend>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        </ul>
+    </div>
+    </div>
+
+  <div class="row center">
+    <input id="myP" type="submit" onclick="Entrar()" class="btn btn-default" value="VER CATÁLOGO DE PELICULAS">
+    <input id="myPP" type="submit" onclick="EntrarComentarios()" class="btn btn-default" value="COMENTARIOS">
+  </div>
+
+  <div  id="comentarios" style="display: none;">
+    <div class="container">
+      <div class="row">
+        <h3>Tu opinión es importante para nosotros</h3>
+        <div class="input-field col s12">
+          <center>
+            <form class="form-inline">
+              <div class="form-group">
+                <input id="opinion" ng-model="aux" class="validate" type="text" pattern="[a-zA-Z]+" placeholder="Ingresa tu nombre." ><br>
+                <textarea id="textreal" maxlength="200" ng-model="aux2" ng-keyup="contar = contar + 1" ng-init="contar=0" class="materialize-textarea" placeholder="Deja tu comentario. maximos 200 caracteres"></textarea><br>caracteres: {{contar}}<br>
+                <input id="confi" type="submit" onclick="validar()" class="btn btn-default" value="CONFIRMAR">
+                <input id="confi2" ng-click="ver()" onclick="validar2()" type="submit"  class="btn btn-default" value="PUBLICAR" style="display: none;">
+                <input id="confi3" onclick="validar3()" type="submit"  class="btn btn-default" value="CANCELAR" style="display: none;">
+              </div>
+            </form>
+            </center>
+            <center style="float:right; "><h3>Comentarios</h3>
+            <div ng-repeat="elemento in arreglo">{{elemento.post}}</div>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+
+
+  <footer class="page-footer orange">
+    <center><img src="./imagenes/redes.png" width="20%"/></center>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col l6 s12">
+          <h5 class="white-text">Hanoway Movies company</h5>
+          <p class="grey-text text-lighten-4">We are a team of gandallas working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Santa Fe</h5>
+          <h5 class="white-text">Nuestra red</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Point to point</a></li>
+            <li><a class="white-text" href="#!">Frame Relay</a></li>
+            <li><a class="white-text" href="#!">PAP CHAP</a></li>
+            <li><a class="white-text" href="#!">Other</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Honduras</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Procesadores</a></li>
+            <li><a class="white-text" href="#!">Servidores</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="#!"><b>Dead Ping TEAM</b></a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+  <script>
+    function Entrar(){
+      var ver = document.querySelector("#ver");
+      var mess1 = document.querySelector("#mess1");
+      var mess2 = document.querySelector("#mess2");
+      if(ver.style.display=='none')
+      {
+        ver.style.display = "initial";
+        mess1.style.display = "none";
+        mess2.style.display = "none";
+        document.getElementById("myP").value = "OCULTAR CATÁLOGO";
+      }else
+      {
+        ver.style.display = "none"
+        document.getElementById("myP").value = "VER CATÁLOGO DE PELICULAS";
+        mess1.style.display = "initial";
+        mess2.style.display = "initial";
+      }
+    }
+    </script>
+
+    <script>
+    function EntrarComentarios(){
+      var ver = document.querySelector("#comentarios");
+      if(ver.style.display=='none')
+      {
+        ver.style.display = "initial";
+        mess1.style.display = "none";
+        mess2.style.display = "none";
+        document.getElementById("myPP").value = "OCULTAR COMENTARIOS";
+      }else
+      {
+        ver.style.display = "none"
+        document.getElementById("myPP").value = "COMENTARIOS";
+        mess1.style.display = "initial";
+        mess2.style.display = "initial";
+      }
+    }
+    </script>
+
+    <script>
+    function validar(){
+      var opinion = document.querySelector("#opinion");
+      var tes = document.querySelector("#textreal");
+      if(opinion.value == "" || tes.value == "")
+        {
+          alert("Complete los campos vacios");
+        }else
+        {
+          if(opinion.checkValidity())
+          {
+            document.getElementById("confi").style.display = "none";
+            document.getElementById("confi2").style.display = "initial";
+            document.getElementById("confi3").style.display = "initial";
+          }else
+          {
+            alert("El nombre solo debe contener letras"); 
+          }
+        }
+    }
+    </script>
+
+    <script>
+    function validar2(){
+      document.getElementById("confi").style.display = "initial";
+      document.getElementById("confi2").style.display = "none";
+      document.getElementById("confi3").style.display = "none";
+      document.getElementById("opinion").value= "";
+      document.getElementById("textreal").value= "";
+    }
+    </script>
+
+    <script>
+    function validar3(){
+      
+      document.getElementById("confi").style.display = "initial";
+      document.getElementById("confi2").style.display = "none";
+      document.getElementById("confi3").style.display = "none";
+      document.getElementById("opinion").value= "";
+      document.getElementById("textreal").value= "";
+    }
+    </script>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
+
+
